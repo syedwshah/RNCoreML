@@ -114,7 +114,6 @@
 				D1DC18AB9ECF5E29CD88E803 /* Pods-RNCoreMLApp-RNCoreMLAppTests.debug.xcconfig */,
 				0F1BAB5381D15C935862D00C /* Pods-RNCoreMLApp-RNCoreMLAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RBLKWC3FQ5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RNCoreMLApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RBLKWC3FQ5;
 				INFOPLIST_FILE = RNCoreMLApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
