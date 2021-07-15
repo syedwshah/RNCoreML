@@ -1,1 +1,1 @@
-declare module 'react-native-core-ml-image';
+declare module 'react-native-core-ml-tflite';
