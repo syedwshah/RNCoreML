@@ -33,6 +33,12 @@ const GalleryStackNavigator = () => {
 
 const ICON_SIZE = 24;
 
+interface TabBarProp {
+  focused: boolean;
+  color: string;
+  size: number;
+}
+
 const MainTab = createBottomTabNavigator();
 
 const MainTabNavigator = () => {
@@ -47,12 +53,16 @@ const MainTabNavigator = () => {
         activeTintColor: theme.color.blueLight,
       }}>
       <MainTab.Screen
-        name="GalleryDefault"
+        name="Live"
         component={GalleryStackNavigator}
         options={{
-          title: 'Gallery',
-          tabBarIcon: props => (
-            <Icon color={props.color} size={ICON_SIZE} name="image" />
+          title: 'Live',
+          tabBarIcon: ({focused, color}): TabBarProp | any => (
+            <Icon
+              color={focused ? theme.color.red : color}
+              size={ICON_SIZE}
+              name="play-circle"
+            />
           ),
         }}
       />
@@ -67,12 +77,12 @@ const MainTabNavigator = () => {
         }}
       />
       <MainTab.Screen
-        name="Live"
+        name="GalleryDefault"
         component={GalleryStackNavigator}
         options={{
-          title: 'Live',
+          title: 'Gallery',
           tabBarIcon: props => (
-            <Icon color={props.color} size={ICON_SIZE} name="play-circle" />
+            <Icon color={props.color} size={ICON_SIZE} name="image" />
           ),
         }}
       />
