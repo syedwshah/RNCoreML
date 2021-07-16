@@ -14,6 +14,7 @@ const GalleryStack = createStackNavigator();
 const GalleryStackNavigator = () => {
   return (
     <GalleryStack.Navigator
+      mode="modal"
       screenOptions={{
         headerTintColor: theme.color.blueLight,
         headerTitleStyle: {
