@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import {theme} from '../constants/theme';
 import GalleryScreen from '../components/gallery/GalleryScreen';
+import SelectedPicture from '../components/gallery/SelectedPicture';
 
 const GalleryStack = createStackNavigator();
 
@@ -24,9 +25,11 @@ const GalleryStackNavigator = () => {
       }}>
       <GalleryStack.Screen name="Gallery" component={GalleryScreen} />
       <GalleryStack.Screen
-        name="ViewPicture"
-        component={GalleryScreen}
-        options={{headerTitle: ''}}
+        name="SelectedPicture"
+        component={SelectedPicture}
+        options={{
+          headerTitle: '',
+        }}
       />
     </GalleryStack.Navigator>
   );
@@ -78,10 +81,9 @@ const MainTabNavigator = () => {
         }}
       />
       <MainTab.Screen
-        name="GalleryDefault"
+        name="Gallery"
         component={GalleryStackNavigator}
         options={{
-          title: 'Gallery',
           tabBarIcon: props => (
             <Icon color={props.color} size={ICON_SIZE} name="image" />
           ),

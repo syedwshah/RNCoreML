@@ -1,25 +1,23 @@
 import React from 'react';
 import {Image, FlatList, TouchableHighlight, StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
-import SelectedPicture from './SelectedPicture';
 import {theme} from '../../constants/theme';
-import {Box, Text} from 'react-native-design-utility';
+import {Box} from 'react-native-design-utility';
+import {useNavigation} from '@react-navigation/core';
+
 import {EdgeNode} from '../types';
 
 const ViewPictures = (pictures: {picture: EdgeNode[] | any}) => {
-  const [showSelected, setShowSelected] = React.useState<boolean>(false);
-  const [uri, setUri] = React.useState<string>('');
-
-  console.log('Data', pictures);
+  const navigation = useNavigation();
 
   const renderItem = ({item}: {item: EdgeNode | any}) => {
     return (
       <Box>
         <TouchableHighlight
           onPress={() => {
-            setShowSelected(true);
-            setUri(item.node.image.uri);
+            navigation.navigate('SelectedPicture', {
+              uri: item.node.image.uri,
+            });
           }}>
           <Image source={{uri: item.node.image.uri}} style={styles.image} />
         </TouchableHighlight>
@@ -27,37 +25,19 @@ const ViewPictures = (pictures: {picture: EdgeNode[] | any}) => {
     );
   };
 
-  if (showSelected) {
-    return <SelectedPicture uri={uri} />;
-  }
-
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <Box f={1}>
-        <Box center>
-          <Text bold size="lg">
-            Select Image
-          </Text>
-        </Box>
-
-        <Box f={1} m="sm" center>
-          <FlatList
-            data={pictures.picture}
-            renderItem={renderItem}
-            keyExtractor={item => item.node.image.uri}
-            numColumns={3}
-          />
-        </Box>
-      </Box>
-    </SafeAreaView>
+    <Box f={1} center my="sm">
+      <FlatList
+        data={pictures.picture}
+        renderItem={renderItem}
+        keyExtractor={item => item.node.image.uri}
+        numColumns={3}
+      />
+    </Box>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   list: {
     flexDirection: 'row',
     flexWrap: 'wrap',

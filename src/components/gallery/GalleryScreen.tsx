@@ -13,7 +13,10 @@ const GalleryScreen = () => {
 
   const getPicturesFromGallery = async () => {
     try {
-      const res = await CameraRoll.getPhotos({first: 5000});
+      const res = await CameraRoll.getPhotos({
+        first: 500,
+        assetType: 'Photos',
+      });
 
       setShowGallery(true);
       // console.log('Edges', res.edges);
@@ -24,7 +27,6 @@ const GalleryScreen = () => {
     }
   };
 
-  // may want to navigate to ViewPictures to open this up as a modal
   if (showGallery) {
     return <ViewPictures picture={pictures} />;
   }
