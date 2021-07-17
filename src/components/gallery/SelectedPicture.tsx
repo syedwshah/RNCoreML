@@ -64,8 +64,8 @@ const SelectedPicture = () => {
           bg={theme.color.greyLight}
           opacity="high"
           radius={10}
-          center
-          position="absolute">
+          position="absolute"
+          style={{top: windowHeight / 20}}>
           <Text bold p="sm">
             {/* {label?.label ? 'Hey' : 'false'} */}
             Label Confidence
