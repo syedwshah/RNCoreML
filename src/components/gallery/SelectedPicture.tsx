@@ -16,9 +16,8 @@ const windowHeight = Dimensions.get('window').height;
 const NetworkMLModelPath =
   'https://github.com/hollance/MobileNet-CoreML/raw/master/MobileNet.mlmodel';
 
-const coreml = async (
-  pathToImage: string,
-): Promise<{label: string; confidence: string} | undefined> => {
+const coreml = async (pathToImage: string) => {
+  //: Promise<{label: string; confidence: string} | undefined>
   try {
     const {jobId, promise} = RNFS.downloadFile({
       fromUrl: NetworkMLModelPath,
@@ -37,7 +36,7 @@ const coreml = async (
 
     // const {label, confidence} = await classifyTopValue(pathToImage, modelPath);
 
-    console.log('The image is a ' + label + '. I think. ');
+    // console.log('The image is a ' + label + '. I think. ');
     // return {label: label, confidence: confidence};
   } catch (error) {
     console.log(error);
@@ -49,7 +48,7 @@ const SelectedPicture = () => {
     uri: string;
   };
 
-  // const {label, confidence} = coreml(routeParams.uri);
+  // const {label: label, confidence: confidence} = coreml(routeParams.uri);
 
   if (routeParams.uri) {
     return (
@@ -63,7 +62,8 @@ const SelectedPicture = () => {
 
         <Box bg={theme.color.greyLight} border={10} center position="absolute">
           <Text bold style={{position: 'absolute'}}>
-            Hello World
+            {/* {label?.label ? 'Hey' : 'false'} */}
+            Label Confidence
           </Text>
         </Box>
       </Box>
