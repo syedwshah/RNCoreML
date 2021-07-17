@@ -19,13 +19,13 @@ const NetworkMLModelPath =
 const coreml = async (pathToImage: string) => {
   //: Promise<{label: string; confidence: string} | undefined>
   try {
-    const {jobId, promise} = RNFS.downloadFile({
-      fromUrl: NetworkMLModelPath,
-      toFile: `${RNFS.DocumentDirectoryPath}MobileNetV2.mlmodel`,
-    });
+    // const {jobId, promise} = RNFS.downloadFile({
+    //   fromUrl: NetworkMLModelPath,
+    //   toFile: `${RNFS.DocumentDirectoryPath}MobileNetV2.mlmodel`,
+    // });
 
-    await promise;
-    console.log('jobId', jobId);
+    // await promise;
+    // console.log('jobId', jobId);
 
     const [{name, path, isFile, isDirectory}] = await RNFS.readDir(
       `${RNFS.DocumentDirectoryPath}`,
@@ -60,8 +60,13 @@ const SelectedPicture = () => {
           />
         </Box>
 
-        <Box bg={theme.color.greyLight} border={10} center position="absolute">
-          <Text bold style={{position: 'absolute'}}>
+        <Box
+          bg={theme.color.greyLight}
+          opacity="high"
+          radius={10}
+          center
+          position="absolute">
+          <Text bold p="sm">
             {/* {label?.label ? 'Hey' : 'false'} */}
             Label Confidence
           </Text>
