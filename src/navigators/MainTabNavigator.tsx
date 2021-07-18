@@ -8,7 +8,6 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import {theme} from '../constants/theme';
 import GalleryScreen from '../components/gallery/GalleryScreen';
-import SelectedPicture from '../components/common/SelectedPicture';
 import CaptureScreen from '../components/capture/CaptureScreen';
 
 const GalleryStack = createStackNavigator();
@@ -21,13 +20,6 @@ const GalleryStackNavigator = () => {
         headerBackTitle: 'Back',
       }}>
       <GalleryStack.Screen name="Gallery" component={GalleryScreen} />
-      {/* <GalleryStack.Screen
-        name="SelectedPicture"
-        component={SelectedPicture}
-        options={{
-          headerTitle: '',
-        }}
-      /> */}
     </GalleryStack.Navigator>
   );
 };
@@ -66,7 +58,7 @@ const MainTabNavigator = () => {
       tabBarOptions={{
         activeTintColor: theme.color.blueLight,
       }}>
-      <MainTab.Screen
+      {/* <MainTab.Screen
         name="Live"
         component={GalleryStackNavigator}
         options={{
@@ -79,7 +71,7 @@ const MainTabNavigator = () => {
             />
           ),
         }}
-      />
+      /> */}
       <MainTab.Screen
         name="Capture"
         component={CaptureStackNavigator}
