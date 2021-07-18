@@ -8,30 +8,40 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import {theme} from '../constants/theme';
 import GalleryScreen from '../components/gallery/GalleryScreen';
-import SelectedPicture from '../components/gallery/SelectedPicture';
+import SelectedPicture from '../components/common/SelectedPicture';
+import CaptureScreen from '../components/capture/CaptureScreen';
 
 const GalleryStack = createStackNavigator();
 
 const GalleryStackNavigator = () => {
   return (
     <GalleryStack.Navigator
-      mode="modal"
       screenOptions={{
         headerTintColor: theme.color.blueLight,
-        headerTitleStyle: {
-          color: theme.color.black,
-        },
         headerBackTitle: 'Back',
       }}>
       <GalleryStack.Screen name="Gallery" component={GalleryScreen} />
-      <GalleryStack.Screen
+      {/* <GalleryStack.Screen
         name="SelectedPicture"
         component={SelectedPicture}
         options={{
           headerTitle: '',
         }}
-      />
+      /> */}
     </GalleryStack.Navigator>
+  );
+};
+
+const CaptureStack = createStackNavigator();
+
+const CaptureStackNavigator = () => {
+  return (
+    <CaptureStack.Navigator
+      screenOptions={{
+        headerTintColor: theme.color.blueLight,
+      }}>
+      <CaptureStack.Screen name="Capture" component={CaptureScreen} />
+    </CaptureStack.Navigator>
   );
 };
 
@@ -71,8 +81,8 @@ const MainTabNavigator = () => {
         }}
       />
       <MainTab.Screen
-        name="TakePhoto"
-        component={GalleryStackNavigator}
+        name="Capture"
+        component={CaptureStackNavigator}
         options={{
           title: 'Taking Photo',
           tabBarIcon: props => (
@@ -80,6 +90,7 @@ const MainTabNavigator = () => {
           ),
         }}
       />
+
       <MainTab.Screen
         name="Gallery"
         component={GalleryStackNavigator}

@@ -19,16 +19,23 @@ const GalleryScreen = () => {
       });
 
       setShowGallery(true);
-      // console.log('Edges', res.edges);
       setPictures(res.edges);
-      // console.log('pictures', pictures);
     } catch (error) {
       console.log(error);
     }
   };
 
   if (showGallery) {
-    return <ViewPictures picture={pictures} />;
+    return (
+      <Box f={1}>
+        <ViewPictures picture={pictures} />
+        <Box center pb="sm">
+          {/* <TouchableOpacity onPress={async () => getPicturesFromGallery()}>
+            <Text color={theme.color.blue}>Choose more photos</Text>
+          </TouchableOpacity> */}
+        </Box>
+      </Box>
+    );
   }
 
   return (

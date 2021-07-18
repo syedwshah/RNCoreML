@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, FlatList, TouchableHighlight, StyleSheet} from 'react-native';
 
 import {theme} from '../../constants/theme';
-import {Box} from 'react-native-design-utility';
+import {Box, Text} from 'react-native-design-utility';
 import {useNavigation} from '@react-navigation/core';
 
 import {EdgeNode} from '../types';
