@@ -5,7 +5,7 @@ import MainStackNavigator from './src/navigators/MainStackNavigator';
 import * as RNFS from 'react-native-fs';
 
 import {theme} from './src/constants/theme';
-import {NetworkMLModelPath, Path} from './src/constants/coremlPath';
+import {NetworkMLModelPath, Path, File} from './src/constants/coremlPath';
 import {ActivityIndicator} from 'react-native';
 
 const App = () => {
@@ -21,11 +21,9 @@ const App = () => {
 
         // console.log('promise', (await promise).statusCode);
 
-        // const exists = await RNFS.exists(
-        //   `${RNFS.MainBundlePath}/MobileNetV2.mlmodelc`,
-        // );
+        const exists = await RNFS.exists(`${RNFS.MainBundlePath}/${File}`);
 
-        // console.log('file exists', exists);
+        console.log('file exists', exists);
 
         setIsReady(true);
       } catch (error) {
