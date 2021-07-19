@@ -20,10 +20,10 @@ const windowHeight = Dimensions.get('window').height;
 //   //should return a promise under full implemntation as such
 //   //: Promise<{label: string; confidence: string} | undefined>
 //   try {
-//     // const modelPath = await compileModel(RNFS.MainBundlePath + '/' + File);
-//     // const {label, confidence} = await classifyTopValue(pathToImage, modelPath);
-//     // console.log('The image is a ' + label + '. I think. ');
-//     // return {label: label, confidence: confidence};
+//     const modelPath = await compileModel(RNFS.MainBundlePath + '/' + File);
+//     const {label, confidence} = await classifyTopValue(pathToImage, modelPath);
+//     console.log('The image is a ' + label + '. I think. ');
+//     return {label: label, confidence: confidence};
 //   } catch (error) {
 //     console.log(error);
 //   }
@@ -38,7 +38,11 @@ const SelectedPicture = () => {
   // coreml(routeParams.uri);
 
   //Once coreml() returns a promise, use this instead:
-  // const {label: label, confidence: confidence} = await coreml(routeParams.uri);
+  // try {
+  //   const {{label, confidence}} = await coreml(routeParams.uri);
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
   if (routeParams.uri) {
     return (
