@@ -1,5 +1,3 @@
-export const Path = 'MobileNetV2.mlmodel';
-
 export const File = 'MobileNetV2.mlmodelc';
 
 export const NetworkMLModelPath =

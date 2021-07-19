@@ -59,20 +59,6 @@ const MainTabNavigator = () => {
       tabBarOptions={{
         activeTintColor: theme.color.blueLight,
       }}>
-      {/* <MainTab.Screen
-        name="Live"
-        component={GalleryStackNavigator}
-        options={{
-          title: 'Live',
-          tabBarIcon: ({focused, color}): TabBarProp | any => (
-            <Icon
-              color={focused ? theme.color.red : color}
-              size={ICON_SIZE}
-              name="play-circle"
-            />
-          ),
-        }}
-      /> */}
       <MainTab.Screen
         name="Capture"
         component={CaptureStackNavigator}

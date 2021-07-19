@@ -2,10 +2,11 @@ import React from 'react';
 import {Box, UtilityThemeProvider} from 'react-native-design-utility';
 import {NavigationContainer} from '@react-navigation/native';
 import MainStackNavigator from './src/navigators/MainStackNavigator';
-import * as RNFS from 'react-native-fs';
+import RNFS from 'react-native-fs';
 
 import {theme} from './src/constants/theme';
-import {NetworkMLModelPath, Path, File} from './src/constants/coremlPath';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {NetworkMLModelPath, File} from './src/constants/coremlPath';
 import {ActivityIndicator} from 'react-native';
 
 const App = () => {
@@ -16,12 +17,12 @@ const App = () => {
       try {
         // const {promise} = await RNFS.downloadFile({
         //   fromUrl: NetworkMLModelPath,
-        //   toFile: RNFS.MainBundlePath + Path,
+        //   toFile: RNFS.MainBundlePath + File,
         // });
 
         // console.log('promise', (await promise).statusCode);
 
-        const exists = await RNFS.exists(`${RNFS.MainBundlePath}/${File}`);
+        const exists = await RNFS.exists(RNFS.MainBundlePath + '/' + File);
 
         console.log('file exists', exists);
 

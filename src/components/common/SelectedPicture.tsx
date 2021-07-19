@@ -4,28 +4,30 @@ import {Dimensions, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Image} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
-import * as RNFS from 'react-native-fs';
-import {compileModel, classifyTopValue} from 'react-native-coreml';
 import Icon from 'react-native-vector-icons/Feather';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
+// import * as RNFS from 'react-native-fs';
+// import {compileModel, classifyTopValue} from 'react-native-coreml';
+// import {File} from '../../constants/coremlPath';
+
 import {theme} from '../../constants/theme';
-import {File, Path} from '../../constants/coremlPath';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const coreml = async (pathToImage: string) => {
-  //: Promise<{label: string; confidence: string} | undefined>
-  try {
-    // const modelPath = await compileModel(`${RNFS.MainBundlePath}/${File}`);
-    // const {label, confidence} = await classifyTopValue(pathToImage, modelPath);
-    // console.log('The image is a ' + label + '. I think. ');
-    // return {label: label, confidence: confidence};
-  } catch (error) {
-    console.log(error);
-  }
-};
+// const coreml = async (pathToImage: string) => {
+//   //should return a promise under full implemntation as such
+//   //: Promise<{label: string; confidence: string} | undefined>
+//   try {
+//     // const modelPath = await compileModel(RNFS.MainBundlePath + '/' + File);
+//     // const {label, confidence} = await classifyTopValue(pathToImage, modelPath);
+//     // console.log('The image is a ' + label + '. I think. ');
+//     // return {label: label, confidence: confidence};
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 const SelectedPicture = () => {
   const navigation = useNavigation();
@@ -33,8 +35,10 @@ const SelectedPicture = () => {
     uri: string;
   };
 
-  // const {label: label, confidence: confidence} = coreml(routeParams.uri);
-  coreml(routeParams.uri);
+  // coreml(routeParams.uri);
+
+  //Once coreml() returns a promise, use this instead:
+  // const {label: label, confidence: confidence} = await coreml(routeParams.uri);
 
   if (routeParams.uri) {
     return (
