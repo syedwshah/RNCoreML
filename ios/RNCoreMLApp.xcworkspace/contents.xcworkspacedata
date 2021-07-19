@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "absolute:/Users/shah/Desktop/React_Projects/RNCoreMLApp/ios/MobileNet.xcodeproj">
+      location = "container:/Users/shah/Desktop/React_Projects/RNCoreMLApp/ios/MobileNet.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
