@@ -5,7 +5,7 @@ To use all the features you will most likely need to run this on a physical devi
 If you need help running on a physical device, please refer to
 https://reactnative.dev/docs/running-on-device
 
-Simply clone the repo, and from the root projectand create your node_modules as well install pods.
+Simply clone the repo, and from the root project directory run:
 
 ```
 yarn
