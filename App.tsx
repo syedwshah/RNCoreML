@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, UtilityThemeProvider} from 'react-native-design-utility';
 import {NavigationContainer} from '@react-navigation/native';
 import MainStackNavigator from './src/navigators/MainStackNavigator';
-import RNFS from 'react-native-fs';
+// import RNFS from 'react-native-fs';
 
 import {theme} from './src/constants/theme';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,9 +22,9 @@ const App = () => {
 
         // console.log('promise', (await promise).statusCode);
 
-        const exists = await RNFS.exists(RNFS.MainBundlePath + '/' + File);
+        // const exists = await RNFS.exists(RNFS.MainBundlePath + '/' + File);
 
-        console.log('file exists', exists);
+        // console.log('file exists', exists);
 
         setIsReady(true);
       } catch (error) {
