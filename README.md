@@ -17,9 +17,9 @@ npx pod-install
 
 Open up RNCoreMLApp.xcworkspace and build the project.
 
-- Make sure you are on .xcworkspace
+- Make sure you are on _.xcworkspace_
 - Make sure you've selected your apple development team
-- Make sure the path of the app is location under Signing & Capabilities is correct by making it a Relative Path
+- Make sure the path of the app location, under **Signing & Capabilities**, is correct. You can do so by changing _Location_ of the project to a Relative Path
 
 When the app runs, you need to allow access to your camera (and network on the fully completed RNCoreML).
 If you don't allow access, then you may have to change permissions from your phone's settings. Otherwise you would need to delete the app on your phone, and rebuild the project.
