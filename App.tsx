@@ -27,8 +27,8 @@ const App = () => {
 
         setIsReady(true);
       } catch (error) {
-        console.log(error);
         console.log(
+          error,
           'check src/constants/coremlPath is installing correct model',
         );
       }

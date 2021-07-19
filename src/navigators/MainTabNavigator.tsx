@@ -31,6 +31,7 @@ const CaptureStackNavigator = () => {
     <CaptureStack.Navigator
       screenOptions={{
         headerTintColor: theme.color.blueLight,
+        headerShown: false,
       }}>
       <CaptureStack.Screen name="Capture" component={CaptureScreen} />
     </CaptureStack.Navigator>
@@ -76,7 +77,7 @@ const MainTabNavigator = () => {
         name="Capture"
         component={CaptureStackNavigator}
         options={{
-          title: 'Taking Photo',
+          title: 'Take Photo',
           tabBarIcon: props => (
             <Icon color={props.color} size={ICON_SIZE} name="camera" />
           ),

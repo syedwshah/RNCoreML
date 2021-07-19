@@ -14,7 +14,7 @@ const GalleryScreen = () => {
   const getPicturesFromGallery = async () => {
     try {
       const res = await CameraRoll.getPhotos({
-        first: 500,
+        first: 50,
         assetType: 'Photos',
       });
 
@@ -29,11 +29,11 @@ const GalleryScreen = () => {
     return (
       <Box f={1}>
         <ViewPictures picture={pictures} />
-        <Box center pb="sm">
-          {/* <TouchableOpacity onPress={async () => getPicturesFromGallery()}>
+        {/* <Box center pb="sm">
+          <TouchableOpacity onPress={async () => getPicturesFromGallery()}>
             <Text color={theme.color.blue}>Choose more photos</Text>
-          </TouchableOpacity> */}
-        </Box>
+          </TouchableOpacity>
+        </Box> */}
       </Box>
     );
   }
