@@ -29,6 +29,7 @@ const windowHeight = Dimensions.get('window').height;
 //   }
 // };
 
+//
 const SelectedPicture = () => {
   const navigation = useNavigation();
   const routeParams = (useRoute().params ?? {}) as {
@@ -37,9 +38,9 @@ const SelectedPicture = () => {
 
   // coreml(routeParams.uri);
 
-  //Once coreml() returns a promise, use this instead:
+  // Once coreml() returns a promise, use this inside of a useEffect(), instead.
   // try {
-  //   const {{label, confidence}} = await coreml(routeParams.uri);
+  //   const {label, confidence} = await coreml(routeParams.uri);
   // } catch (error) {
   //   console.log(error);
   // }
