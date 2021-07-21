@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Dimensions, TouchableOpacity, StyleSheet} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -7,43 +6,16 @@ import {Box, Text} from 'react-native-design-utility';
 import Icon from 'react-native-vector-icons/Feather';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-// import * as RNFS from 'react-native-fs';
-// import {compileModel, classifyTopValue} from 'react-native-coreml';
-// import {File} from '../../constants/coremlPath';
-
 import {theme} from '../../constants/theme';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-// const coreml = async (pathToImage: string) => {
-//   //should return a promise under full implemntation as such
-//   //: Promise<{label: string; confidence: string} | undefined>
-//   try {
-//     const modelPath = await compileModel(RNFS.MainBundlePath + '/' + File);
-//     const {label, confidence} = await classifyTopValue(pathToImage, modelPath);
-//     console.log('The image is a ' + label + '. I think. ');
-//     return {label: label, confidence: confidence};
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-//
 const SelectedPicture = () => {
   const navigation = useNavigation();
   const routeParams = (useRoute().params ?? {}) as {
     uri: string;
   };
-
-  // coreml(routeParams.uri);
-
-  // Once coreml() returns a promise, use this inside of a useEffect(), instead.
-  // try {
-  //   const {label, confidence} = await coreml(routeParams.uri);
-  // } catch (error) {
-  //   console.log(error);
-  // }
 
   if (routeParams.uri) {
     return (

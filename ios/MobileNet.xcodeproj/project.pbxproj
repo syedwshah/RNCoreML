@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		31683CD164034476A71598A3 /* libPods-RNCoreMLApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C25C8EEB4443B4E11793C8 /* libPods-RNCoreMLApp.a */; };
-		71F1A20526A4CC3000893017 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 71F1A20426A4CC3000893017 /* MobileNetV2.mlmodel */; };
+		713C1CF726A7E1CD0082EE53 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 713C1CF426A7E18A0082EE53 /* MobileNet.mlmodel */; };
 		71FC298226A02C82003DF843 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FC298126A02C82003DF843 /* Test.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E96BD88160D913CDEB439712 /* libPods-RNCoreMLApp-RNCoreMLAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07206ACE00104F1935081BE9 /* libPods-RNCoreMLApp-RNCoreMLAppTests.a */; };
@@ -40,7 +40,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RNCoreMLApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RNCoreMLApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RNCoreMLApp/main.m; sourceTree = "<group>"; };
-		71F1A20426A4CC3000893017 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MobileNetV2.mlmodel; path = /Users/shah/Desktop/React_Projects/RNCoreMLApp/ios/../../../MobileNetV2.mlmodel; sourceTree = "<absolute>"; };
+		713C1CF426A7E18A0082EE53 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MobileNet.mlmodel; path = ../../../MobileNet.mlmodel; sourceTree = "<group>"; };
 		71FC298026A02C82003DF843 /* RNCoreMLApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNCoreMLApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		71FC298126A02C82003DF843 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		71FC298D26A0E478003DF843 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				71F1A20426A4CC3000893017 /* MobileNetV2.mlmodel */,
+				713C1CF426A7E18A0082EE53 /* MobileNet.mlmodel */,
 				71FC298126A02C82003DF843 /* Test.swift */,
 				13B07FAE1A68108700A75B9A /* RNCoreMLApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -434,9 +434,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713C1CF726A7E1CD0082EE53 /* MobileNet.mlmodel in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				71F1A20526A4CC3000893017 /* MobileNetV2.mlmodel in Sources */,
 				71FC298226A02C82003DF843 /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				COREML_CODEGEN_LANGUAGE = Swift;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RBLKWC3FQ5;
 				ENABLE_BITCODE = NO;
@@ -539,6 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				COREML_CODEGEN_LANGUAGE = Swift;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RBLKWC3FQ5;
 				INFOPLIST_FILE = RNCoreMLApp/Info.plist;
