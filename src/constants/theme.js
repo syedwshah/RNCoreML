@@ -52,6 +52,7 @@ export const theme = {
       md: 18,
       lg: 20,
       xl: 24,
+      giant: 50,
     },
     weight: {
       light: '200',
