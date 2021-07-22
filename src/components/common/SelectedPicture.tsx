@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {Image} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import Icon from 'react-native-vector-icons/Feather';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -9,6 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
   StyleSheet,
+  Image,
   requireNativeComponent,
 } from 'react-native';
 
@@ -66,12 +66,14 @@ const SelectedPicture = () => {
             </Text>
           </TouchableOpacity>
         </Box>
-        <CoreView
-          style={{flex: 1, backgroundColor: 'white'}}
-          // count={1}
-          image={'image data'}
-          onUpdate={update}
-        />
+        <TouchableOpacity
+          style={{flex: 1, backgroundColor: theme.color.blueLight, opacity: 0}}>
+          <CoreView
+            style={{flex: 1}}
+            image={routeParams.uri}
+            onUpdate={update}
+          />
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
@@ -86,7 +88,7 @@ const SelectedPicture = () => {
 const s = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: theme.color.white,
   },
   label: {
     borderBottomLeftRadius: 10,

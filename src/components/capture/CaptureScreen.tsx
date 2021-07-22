@@ -16,7 +16,7 @@ const CaptureScreen = () => {
   const captureHandle = async () => {
     try {
       const data = await takePicture();
-      console.log(data.uri);
+      // console.log(data.uri);
 
       navigation.navigate('SelectedPicture', {
         uri: data.uri,
@@ -35,11 +35,13 @@ const CaptureScreen = () => {
           type={RNCamera.Constants.Type.back}
           captureAudio={false}
           useNativeZoom>
-          <Box mb="lg">
+          <Box
+            mb="lg"
+            radius={50}
+            backgroundColor={theme.color.greyLighter}
+            o="high">
             <TouchableOpacity onPress={() => captureHandle()}>
-              <Box radius={50} backgroundColor="greyLighter" o="high">
-                <Icon name="hexagon" size={70} color={theme.color.blueLight} />
-              </Box>
+              <Icon name="hexagon" size={70} color={theme.color.blueLight} />
             </TouchableOpacity>
           </Box>
         </RNCamera>

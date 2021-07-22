@@ -13,19 +13,16 @@ import Vision
 class CoreView: UIView {
   @objc var image: NSString = "" {
     didSet {
-      button.setTitle(String(describing: image), for: .normal)
+      button.setTitle(String(describing: ""), for: .normal)
     }
   }
-  
-  @objc var count: NSNumber = 0 {
-    didSet {
-      button.setTitle(String(describing: count), for: .normal)
-    }
-  }
+  @objc var count: NSNumber = 0
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.addSubview(button)
-    increment()
+    //put methods to run here on touch
+    sendUpdate()
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -39,28 +36,17 @@ class CoreView: UIView {
     b.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     b.addTarget(
       self,
-      action: #selector(increment),
+      action: #selector(sendUpdate),
       for: .touchUpInside
     )
-    
-    let longPress = UILongPressGestureRecognizer(
-          target: self,
-          action: #selector(sendUpdate(_:))
-        )
-        b.addGestureRecognizer(longPress)
     
     return b
   }()
   
-  @objc func sendUpdate(_ gesture: UILongPressGestureRecognizer) {
-      if gesture.state == .began {
-        if onUpdate != nil {
-          onUpdate!(["count": count])
-        }
-      }
+  @objc func sendUpdate() {
+    if onUpdate != nil {
+      onUpdate!(["count": count])
     }
-  
-  @objc func increment() {
-    count = count.intValue + 1 as NSNumber
+    print("Count is \(count)")
   }
 }
