@@ -68,7 +68,8 @@ const SelectedPicture = () => {
         </Box>
         <CoreView
           style={{flex: 1, backgroundColor: 'white'}}
-          count={1}
+          // count={1}
+          image={'image data'}
           onUpdate={update}
         />
       </SafeAreaView>

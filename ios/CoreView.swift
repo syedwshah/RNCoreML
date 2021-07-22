@@ -5,8 +5,18 @@
 //  Created by Syed Shah on 7/21/21.
 //
 
+import Foundation
 import UIKit
+import CoreML
+import Vision
+
 class CoreView: UIView {
+  @objc var image: NSString = "" {
+    didSet {
+      button.setTitle(String(describing: image), for: .normal)
+    }
+  }
+  
   @objc var count: NSNumber = 0 {
     didSet {
       button.setTitle(String(describing: count), for: .normal)
