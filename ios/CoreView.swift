@@ -10,6 +10,7 @@ import UIKit
 import CoreML
 import Vision
 
+@available(iOS 11.0, *)
 class CoreView: UIView {
   @objc var image: NSString = "" {
     didSet {
@@ -17,11 +18,12 @@ class CoreView: UIView {
     }
   }
   @objc var count: NSNumber = 0
+  @objc var label: NSString = ""
 
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.addSubview(button)
-    //put methods to run here on touch
+  
     sendUpdate()
   }
   required init?(coder aDecoder: NSCoder) {
@@ -37,6 +39,7 @@ class CoreView: UIView {
     b.addTarget(
       self,
       action: #selector(sendUpdate),
+//      action: #selector(sendClassification(image)),
       for: .touchUpInside
     )
     
@@ -48,5 +51,48 @@ class CoreView: UIView {
       onUpdate!(["count": count])
     }
     print("Count is \(count)")
+  }
+  
+  private lazy var classificationRequest: VNCoreMLRequest = {
+    do {
+      let model = try VNCoreMLModel(for: MobileNet().model)
+      // 3
+      let request = VNCoreMLRequest(model: model) { request, _ in
+          if let classifications =
+            request.results as? [VNClassificationObservation] {
+            //classifications are here, so send them to react
+            print("Classification results: \(classifications)")
+          }
+      }
+      // 4
+      request.imageCropAndScaleOption = .centerCrop
+      return request
+    } catch {
+      // 5
+      fatalError("Failed to load Vision ML model: \(error)")
+    }
+  }()
+  
+  func classifyImage(_ imageString: NSString) {
+    let imageData = Data(base64Encoded: imageString as String)
+    let image = UIImage(data: imageData!)
+    
+    guard let orientation = CGImagePropertyOrientation(
+            rawValue: UInt32(image!.imageOrientation.rawValue)) else {
+      return
+    }
+    guard let ciImage = CIImage(image: image!) else {
+      fatalError("Unable to create \(CIImage.self) from \(String(describing: image)).")
+    }
+    // 2
+    DispatchQueue.global(qos: .userInitiated).async {
+      let handler =
+        VNImageRequestHandler(ciImage: ciImage, orientation: orientation)
+      do {
+        try handler.perform([self.classificationRequest])
+      } catch {
+        print("Failed to perform classification.\n\(error.localizedDescription)")
+      }
+    }
   }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 11.0, *)
 @objc(CoreViewManager)
 class CoreViewManager: RCTViewManager {
   override func view() -> UIView! {
