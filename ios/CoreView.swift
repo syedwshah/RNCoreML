@@ -56,7 +56,7 @@ class CoreView: UIView {
   private lazy var classificationRequest: VNCoreMLRequest = {
     do {
       let model = try VNCoreMLModel(for: MobileNet().model)
-      // 3
+      
       let request = VNCoreMLRequest(model: model) { request, _ in
           if let classifications =
             request.results as? [VNClassificationObservation] {
@@ -64,11 +64,11 @@ class CoreView: UIView {
             print("Classification results: \(classifications)")
           }
       }
-      // 4
+      
       request.imageCropAndScaleOption = .centerCrop
       return request
     } catch {
-      // 5
+      
       fatalError("Failed to load Vision ML model: \(error)")
     }
   }()
@@ -84,7 +84,7 @@ class CoreView: UIView {
     guard let ciImage = CIImage(image: image!) else {
       fatalError("Unable to create \(CIImage.self) from \(String(describing: image)).")
     }
-    // 2
+    
     DispatchQueue.global(qos: .userInitiated).async {
       let handler =
         VNImageRequestHandler(ciImage: ciImage, orientation: orientation)

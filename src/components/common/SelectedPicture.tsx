@@ -33,48 +33,53 @@ const SelectedPicture = () => {
 
   if (routeParams.uri) {
     return (
-      // <SafeAreaView style={s.safeArea}>
-      //   <Box f={1} center>
-      //     <Box>
-      //       <Box p="sm">
-      //         <TouchableOpacity onPress={navigation.goBack}>
-      //           <Icon name="x" size={30} color={theme.color.blueLight} />
-      //         </TouchableOpacity>
-      //       </Box>
-
-      //       <Box style={s.image}>
-      //         <Image
-      //           source={{uri: routeParams.uri}}
-      //           style={{height: windowHeight / 1.3, width: windowWidth / 1.05}}
-      //         />
-      //       </Box>
-
-      //       <Box bg={theme.color.greyLighter} center style={s.label}>
-      //         <Text bold p="sm">
-      //           Label Confidence
-      //         </Text>
-      //       </Box>
-      //     </Box>
-      //   </Box>
-      // </SafeAreaView>
-
       <SafeAreaView style={s.safeArea}>
-        <Box f={1} center style={{borderColor: '#eee', borderBottomWidth: 1}}>
-          <TouchableOpacity onPress={() => setCount(count + 1)}>
-            <Text size="giant" color={theme.color.green}>
-              {count}
-            </Text>
-          </TouchableOpacity>
+        <Box f={1} center>
+          <Box>
+            <Box p="sm">
+              <TouchableOpacity onPress={navigation.goBack}>
+                <Icon name="x" size={30} color={theme.color.blueLight} />
+              </TouchableOpacity>
+            </Box>
+
+            <Box style={s.image}>
+              <Image
+                source={{uri: routeParams.uri}}
+                style={{height: windowHeight / 1.3, width: windowWidth / 1.05}}
+              />
+            </Box>
+
+            <Box bg={theme.color.greyLighter} center style={s.label}>
+              <Text bold p="sm">
+                Label Confidence
+              </Text>
+            </Box>
+          </Box>
         </Box>
-        <TouchableOpacity
-          style={{flex: 1, backgroundColor: theme.color.blueLight, opacity: 0}}>
-          <CoreView
-            style={{flex: 1}}
-            image={routeParams.uri}
-            onUpdate={update}
-          />
-        </TouchableOpacity>
       </SafeAreaView>
+
+      /*
+      This is simply manual testing for CoreView module.
+      Something like this would be inside CaptureScreen and GalleryScreen,
+        and you would be redirected here, to SelectedPicture with image label/confidence data
+      */
+      // <SafeAreaView style={s.safeArea}>
+      //   <Box f={1} center style={{borderColor: '#eee', borderBottomWidth: 1}}>
+      //     <TouchableOpacity onPress={() => setCount(count + 1)}>
+      //       <Text size="giant" color={theme.color.green}>
+      //         {count}
+      //       </Text>
+      //     </TouchableOpacity>
+      //   </Box>
+      //   <TouchableOpacity
+      //     style={{flex: 1, backgroundColor: theme.color.blueLight, opacity: 0}}>
+      //     <CoreView
+      //       style={{flex: 1}}
+      //       image={routeParams.uri}
+      //       onUpdate={update}
+      //     />
+      //   </TouchableOpacity>
+      // </SafeAreaView>
     );
   }
 

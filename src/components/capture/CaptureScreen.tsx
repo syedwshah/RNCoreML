@@ -16,7 +16,6 @@ const CaptureScreen = () => {
   const captureHandle = async () => {
     try {
       const data = await takePicture();
-      // console.log(data.uri);
 
       navigation.navigate('SelectedPicture', {
         uri: data.uri,
