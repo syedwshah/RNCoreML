@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-  requireNativeComponent,
+  // requireNativeComponent,
 } from 'react-native';
 
 import {theme} from '../../constants/theme';
@@ -17,19 +17,19 @@ import {theme} from '../../constants/theme';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const CoreView = requireNativeComponent('CoreView');
+// const CoreView = requireNativeComponent('CoreView');
 
 const SelectedPicture = () => {
-  const [count, setCount] = React.useState(1);
+  // const [count, setCount] = React.useState(1);
 
   const navigation = useNavigation();
   const routeParams = (useRoute().params ?? {}) as {
     uri: string;
   };
 
-  const update = e => {
-    setCount(e.nativeEvent.count);
-  };
+  // const update = e => {
+  //   setCount(e.nativeEvent.count);
+  // };
 
   if (routeParams.uri) {
     return (
@@ -61,7 +61,7 @@ const SelectedPicture = () => {
       /*
       This is simply manual testing for CoreView module.
       Something like this would be inside CaptureScreen and GalleryScreen,
-        and you would be redirected here, to SelectedPicture with image label/confidence data
+        and you would be redirected here, to SelectedPicture with image label/confidence data passed as a param
       */
       // <SafeAreaView style={s.safeArea}>
       //   <Box f={1} center style={{borderColor: '#eee', borderBottomWidth: 1}}>
