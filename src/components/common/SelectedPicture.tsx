@@ -60,8 +60,8 @@ const SelectedPicture = () => {
 
       /*
       This is simply manual testing for CoreView module.
-      Something like this would be inside CaptureScreen and GalleryScreen,
-        and you would be redirected here, to SelectedPicture with image label/confidence data passed as a param
+      CaptureScreen and GalleryScreen, would be redirected here, to SelectedPicture,
+        with image label/confidence data passed as a param
       */
       // <SafeAreaView style={s.safeArea}>
       //   <Box f={1} center style={{borderColor: '#eee', borderBottomWidth: 1}}>
@@ -72,7 +72,11 @@ const SelectedPicture = () => {
       //     </TouchableOpacity>
       //   </Box>
       //   <TouchableOpacity
-      //     style={{flex: 1, backgroundColor: theme.color.blueLight, opacity: 0}}>
+      //     style={{
+      //       flex: 1,
+      //       // backgroundColor: theme.color.blueLight,
+      //       opacity: 1,
+      //     }}>
       //     <CoreView
       //       style={{flex: 1}}
       //       image={routeParams.uri}

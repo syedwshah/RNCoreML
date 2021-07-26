@@ -14,7 +14,7 @@ import Vision
 class CoreView: UIView {
   @objc var image: NSString = "" {
     didSet {
-      button.setTitle(String(describing: ""), for: .normal)
+      button.setTitle(String(describing: count), for: .normal)
     }
   }
   @objc var count: NSNumber = 0
@@ -39,10 +39,13 @@ class CoreView: UIView {
     b.addTarget(
       self,
       action: #selector(sendUpdate),
-//      action: #selector(sendClassification(image)),
+    
+//      action: #selector(classifyImage(imageString:)),
+      
+      //Need to expose methods on the ViewManager, for
       for: .touchUpInside
     )
-    
+
     return b
   }()
   
@@ -68,12 +71,11 @@ class CoreView: UIView {
       request.imageCropAndScaleOption = .centerCrop
       return request
     } catch {
-      
       fatalError("Failed to load Vision ML model: \(error)")
     }
   }()
   
-  func classifyImage(_ imageString: NSString) {
+  @objc func classifyImage(imageString: NSString) {
     let imageData = Data(base64Encoded: imageString as String)
     let image = UIImage(data: imageData!)
     
