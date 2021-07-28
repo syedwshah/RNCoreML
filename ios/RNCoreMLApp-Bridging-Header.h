@@ -7,3 +7,6 @@
 
 #import "React/RCTEventEmitter.h"
 
+#import "React/RCTUIManager.h"
+
+

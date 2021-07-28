@@ -4,7 +4,6 @@
 //
 //  Created by Syed Shah on 7/21/21.
 //
-
 import Foundation
 import UIKit
 import CoreML
@@ -12,19 +11,12 @@ import Vision
 
 @available(iOS 11.0, *)
 class CoreView: UIView {
-  @objc var image: NSString = "" {
-    didSet {
-      button.setTitle(String(describing: count), for: .normal)
-    }
-  }
-  @objc var count: NSNumber = 0
-  @objc var label: NSString = ""
+  @objc var label: NSArray = []
+  @objc var imageLocation: NSString?
+  var toggle = true
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.addSubview(button)
-  
-    sendUpdate()
   }
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -32,29 +24,26 @@ class CoreView: UIView {
   
   @objc var onUpdate: RCTDirectEventBlock?
   
-  lazy var button: UIButton = {
-    let b = UIButton.init(type: UIButton.ButtonType.system)
-    b.titleLabel?.font = UIFont.systemFont(ofSize: 50)
-    b.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    b.addTarget(
-      self,
-      action: #selector(sendUpdate),
+  //This will receive a value from React, then udpate data on Native
+  @objc func update(value: NSString) {
+    label = [value]
+    imageLocation = value
+    print("Label is \(label)")
     
-//      action: #selector(classifyImage(imageString:)),
-      
-      //Need to expose methods on the ViewManager, for
-      for: .touchUpInside
-    )
-
-    return b
-  }()
+    //Temporary solution for potential need to run sendUpdate() the first time
+    if toggle {
+      sendUpdate()
+      toggle = false
+    }
+    sendUpdate()
+  }
   
   @objc func sendUpdate() {
     if onUpdate != nil {
-      onUpdate!(["count": count])
+      onUpdate!(["label": label, "imageLocation": imageLocation ?? ""])
     }
-    print("Count is \(count)")
   }
+  
   
   private lazy var classificationRequest: VNCoreMLRequest = {
     do {
@@ -65,6 +54,9 @@ class CoreView: UIView {
             request.results as? [VNClassificationObservation] {
             //classifications are here, so send them to react
             print("Classification results: \(classifications)")
+            
+//            self.label = classifications
+//            self.sendUpdate()
           }
       }
       
