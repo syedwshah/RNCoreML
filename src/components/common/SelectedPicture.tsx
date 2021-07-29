@@ -31,9 +31,9 @@ const SelectedPicture = () => {
   };
 
   const updateReact = (e: {
-    nativeEvent: {imageLocation: React.SetStateAction<string[]>};
+    nativeEvent: {label: React.SetStateAction<string[]>};
   }) => {
-    setLabel(e.nativeEvent.imageLocation);
+    setLabel(e.nativeEvent.label);
 
     console.log('label in JS', label);
   };
@@ -95,7 +95,6 @@ const SelectedPicture = () => {
           }}>
           <CoreView
             style={{flex: 1}}
-            // image={routeParams.uri}
             onUpdate={updateReact}
             ref={e => setRef(e)}
           />

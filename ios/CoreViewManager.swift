@@ -14,7 +14,7 @@ class CoreViewManager: RCTViewManager {
     return CoreView()
   }
   
-  @objc func obtainLabelData(_ node: NSNumber, imageLocation: NSString) {
+  @objc func obtainLabelData(_ node: NSNumber, imageLocation: NSString!) {
       
       DispatchQueue.main.async {
         let component = self.bridge.uiManager.view(

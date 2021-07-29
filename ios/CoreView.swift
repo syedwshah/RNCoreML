@@ -1,9 +1,3 @@
-//
-//  CoreView.swift
-//  RNCoreMLApp
-//
-//  Created by Syed Shah on 7/21/21.
-//
 import Foundation
 import UIKit
 import CoreML
@@ -12,7 +6,7 @@ import Vision
 @available(iOS 11.0, *)
 class CoreView: UIView {
   @objc var label: NSArray = []
-  @objc var imageLocation: NSString?
+  @objc var imageLocation: NSString!
   var toggle = true
 
   override init(frame: CGRect) {
@@ -26,21 +20,22 @@ class CoreView: UIView {
   
   //This will receive a value from React, then udpate data on Native
   @objc func update(value: NSString) {
+    //    classifyImage(value)
     label = [value]
-    imageLocation = value
-    print("Label is \(label)")
-    
-    //Temporary solution for potential need to run sendUpdate() the first time
+    print("label is \(label)")
+        
+    //Temporary solution for potential need to run extra sendUpdate() the first time
     if toggle {
       sendUpdate()
       toggle = false
     }
+    
     sendUpdate()
   }
   
   @objc func sendUpdate() {
     if onUpdate != nil {
-      onUpdate!(["label": label, "imageLocation": imageLocation ?? ""])
+      onUpdate!(["label": label])
     }
   }
   
@@ -48,29 +43,30 @@ class CoreView: UIView {
   private lazy var classificationRequest: VNCoreMLRequest = {
     do {
       let model = try VNCoreMLModel(for: MobileNet().model)
-      
+
       let request = VNCoreMLRequest(model: model) { request, _ in
           if let classifications =
             request.results as? [VNClassificationObservation] {
-            //classifications are here, so send them to react
+          
             print("Classification results: \(classifications)")
-            
-//            self.label = classifications
-//            self.sendUpdate()
+
+            self.label = classifications as NSArray
           }
       }
-      
+
       request.imageCropAndScaleOption = .centerCrop
       return request
     } catch {
       fatalError("Failed to load Vision ML model: \(error)")
     }
   }()
-  
-  @objc func classifyImage(imageString: NSString) {
-    let imageData = Data(base64Encoded: imageString as String)
-    let image = UIImage(data: imageData!)
-    
+
+  @objc func classifyImage(_ image: NSString) {
+    //May need a new way to convert NSString to UIImage
+    let imageData = Data(base64Encoded: image as String)!
+    let image = UIImage(data: imageData)
+
+
     guard let orientation = CGImagePropertyOrientation(
             rawValue: UInt32(image!.imageOrientation.rawValue)) else {
       return
@@ -78,7 +74,7 @@ class CoreView: UIView {
     guard let ciImage = CIImage(image: image!) else {
       fatalError("Unable to create \(CIImage.self) from \(String(describing: image)).")
     }
-    
+
     DispatchQueue.global(qos: .userInitiated).async {
       let handler =
         VNImageRequestHandler(ciImage: ciImage, orientation: orientation)
