@@ -20,7 +20,7 @@ class CoreView: UIView {
   
   //This will receive a value from React, then udpate data on Native
   @objc func update(value: NSString) {
-    //    classifyImage(value)
+    classifyImage(value as String)
     label = [value]
     print("label is \(label)")
         
@@ -61,17 +61,14 @@ class CoreView: UIView {
     }
   }()
 
-  @objc func classifyImage(_ image: NSString) {
-    //May need a new way to convert NSString to UIImage
-    let imageData = Data(base64Encoded: image as String)!
-    let image = UIImage(data: imageData)
-
+  @objc func classifyImage(_ image: String) {
+    let uiImage = ConvertBase64StringToImage(imageBase64String: image)
 
     guard let orientation = CGImagePropertyOrientation(
-            rawValue: UInt32(image!.imageOrientation.rawValue)) else {
+            rawValue: UInt32((uiImage?.imageOrientation.rawValue)!)) else {
       return
     }
-    guard let ciImage = CIImage(image: image!) else {
+    guard let ciImage = CIImage(image: uiImage!) else {
       fatalError("Unable to create \(CIImage.self) from \(String(describing: image)).")
     }
 
@@ -84,5 +81,19 @@ class CoreView: UIView {
         print("Failed to perform classification.\n\(error.localizedDescription)")
       }
     }
+  }
+  
+  func ConvertBase64StringToImage (imageBase64String:String) -> UIImage? {
+      if let url = URL(string: imageBase64String) {
+          do {
+              let imageData = try Data(contentsOf: url)
+              let image = UIImage(data: imageData)
+              return image
+          } catch {
+              print(error)
+          }
+      }
+
+      return nil
   }
 }
