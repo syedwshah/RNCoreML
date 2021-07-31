@@ -17,19 +17,18 @@ const ViewPictures = (pictures: {picture: EdgeNode[] | any}) => {
     return (
       <Box>
         <TouchableHighlight
-          onPress={() => {
-            const destPath =
-              'file://private/var/containers/Bundle/Application/ED39A55B-01EC-40D7-A11C-43BFDD6329C7/RNCoreMLApp.app/hazelnut.png';
-            RNFS.moveFile(imageUri, destPath)
-              .then(() => {
-                console.log('Image moved');
-              })
-              .catch(e => {
-                console.log(e);
-              });
+          onPress={async () => {
+            const destPath = RNFS.CachesDirectoryPath + '/MyPic.jpg';
+
+            try {
+              await RNFS.copyAssetsFileIOS(imageUri, destPath, 0, 0);
+              console.log('destPath', destPath);
+            } catch (error) {
+              console.log(error);
+            }
 
             navigation.navigate('SelectedPicture', {
-              uri: destPath,
+              uri: 'file://' + destPath,
             });
           }}>
           <Image source={{uri: imageUri}} style={styles.image} />

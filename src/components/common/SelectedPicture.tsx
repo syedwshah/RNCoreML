@@ -42,11 +42,14 @@ const SelectedPicture = () => {
   React.useEffect(() => {
     if (label !== undefined) {
       const data = label.reduce((accum, curr) => {
-        return `${accum} ${curr.identifier.split(' ')[1]} ${
+        let identifier = curr.identifier.split(' ')[1];
+        if (identifier[identifier.length - 1] === ',') {
+          identifier = identifier.substring(0, identifier.length - 1);
+        }
+        return `${accum} ${identifier} (${
           Math.round(100 * curr.confidence) / 100
-        }`;
+        })`;
       }, '');
-      console.log(data);
 
       setClassification(data);
     }

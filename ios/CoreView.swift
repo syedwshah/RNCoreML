@@ -6,7 +6,6 @@ import Vision
 @available(iOS 11.0, *)
 class CoreView: UIView {
   @objc var label: NSArray = []
-//  var toggle = true
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -23,13 +22,6 @@ class CoreView: UIView {
   }
   
   @objc func sendUpdate() {
-//    if toggle {
-//      if onUpdate != nil {
-//        onUpdate!(["label": label])
-//        toggle = false
-//      }
-//    }
-    
     onUpdate!(["label": label])
   }
   
