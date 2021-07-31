@@ -6,7 +6,7 @@ import Vision
 @available(iOS 11.0, *)
 class CoreView: UIView {
   @objc var label: NSArray = []
-  var toggle = true
+//  var toggle = true
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -17,20 +17,20 @@ class CoreView: UIView {
   
   @objc var onUpdate: RCTDirectEventBlock?
   
-  //This will receive a value from React, then update data on Native
+  //This will receive a value from React, then upate data on Native
   @objc func update(value: NSString) {
     classifyImage(value as String)
   }
   
   @objc func sendUpdate() {
-    if toggle {
-      onUpdate!(["label": label])
-      toggle = false
-    }
+//    if toggle {
+//      if onUpdate != nil {
+//        onUpdate!(["label": label])
+//        toggle = false
+//      }
+//    }
     
-    if onUpdate != nil {
-      onUpdate!(["label": label])
-    }
+    onUpdate!(["label": label])
   }
   
   
@@ -45,7 +45,7 @@ class CoreView: UIView {
             let topClassifications = classifications.prefix(2).map {
               ["confidence": $0.confidence as NSNumber, "identifier": $0.identifier as NSString]
             }
-
+            
             self.label = topClassifications as NSArray
             self.sendUpdate()
             print("label is \(self.label)")

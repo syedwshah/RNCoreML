@@ -11,15 +11,17 @@ const ViewPictures = (pictures: {picture: EdgeNode[] | any}) => {
   const navigation = useNavigation();
 
   const renderItem = ({item}: {item: EdgeNode | any}) => {
+    const imageUri = item.node.image.uri;
+
     return (
       <Box>
         <TouchableHighlight
           onPress={() => {
             navigation.navigate('SelectedPicture', {
-              uri: item.node.image.uri,
+              uri: imageUri,
             });
           }}>
-          <Image source={{uri: item.node.image.uri}} style={styles.image} />
+          <Image source={{uri: imageUri}} style={styles.image} />
         </TouchableHighlight>
       </Box>
     );
