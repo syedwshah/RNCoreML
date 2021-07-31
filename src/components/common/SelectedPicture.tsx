@@ -15,11 +15,10 @@ import {
 } from 'react-native';
 
 import {theme} from '../../constants/theme';
+import CoreView from './CoreView';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-const CoreView = requireNativeComponent('CoreView');
 
 const SelectedPicture = () => {
   const [ref, setRef] = React.useState<any>();
@@ -33,17 +32,13 @@ const SelectedPicture = () => {
   const updateReact = (e: {
     nativeEvent: {label: React.SetStateAction<string[]>};
   }) => {
-    setLabel(e.nativeEvent.label as {confidence: string; identifier: string});
+    setLabel(e.label as [{confidence: string; identifier: string}]);
 
     console.log('label in JS', label);
   };
 
   const updateNative = () => {
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(ref),
-      UIManager.CoreView.Commands.obtainLabelData,
-      [routeParams.uri],
-    );
+    ref.update(routeParams.uri);
   };
 
   if (routeParams.uri) {
@@ -78,27 +73,23 @@ const SelectedPicture = () => {
       CaptureScreen and GalleryScreen, would be redirected here, to SelectedPicture,
         with image label/confidence data passed as a param
       */
+
       <SafeAreaView style={s.safeArea}>
-        <Box f={1} center style={{borderColor: '#eee', borderBottomWidth: 1}}>
-          <TouchableOpacity>
-            <Text size="giant" color={theme.color.green}>
-              {'count'}
-            </Text>
+        <Box f={1}>
+          <TouchableOpacity
+            onPress={updateNative}
+            style={{
+              flex: 1,
+              backgroundColor: theme.color.blueLight,
+              opacity: 1,
+            }}>
+            <CoreView
+              // style={{flex: 1}}
+              onUpdate={updateReact}
+              ref={e => setRef(e)}
+            />
           </TouchableOpacity>
         </Box>
-        <TouchableOpacity
-          onPress={updateNative}
-          style={{
-            flex: 1,
-            backgroundColor: theme.color.blueLight,
-            opacity: 0.1,
-          }}>
-          <CoreView
-            style={{flex: 1}}
-            onUpdate={updateReact}
-            ref={e => setRef(e)}
-          />
-        </TouchableOpacity>
       </SafeAreaView>
     );
   }

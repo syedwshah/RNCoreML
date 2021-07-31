@@ -17,20 +17,9 @@ class CoreView: UIView {
   
   @objc var onUpdate: RCTDirectEventBlock?
   
-  //This will receive a value from React, then udpate data on Native
+  //This will receive a value from React, then update data on Native
   @objc func update(value: NSString) {
     classifyImage(value as String)
-    
-//    print("label is \(label)")
-//
-    //Temporary solution for potential need to run extra sendUpdate() the first time
-    //Would be better to wait for a promise
-//    if toggle {
-//      sendUpdate()
-//      toggle = false
-//    }
-//
-//    sendUpdate()
   }
   
   @objc func sendUpdate() {
