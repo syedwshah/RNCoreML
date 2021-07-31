@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, FlatList, TouchableHighlight, StyleSheet} from 'react-native';
+import RNFS from 'react-native-fs';
 
 import {theme} from '../../constants/theme';
 import {Box} from 'react-native-design-utility';
@@ -17,8 +18,18 @@ const ViewPictures = (pictures: {picture: EdgeNode[] | any}) => {
       <Box>
         <TouchableHighlight
           onPress={() => {
+            const destPath =
+              'file://private/var/containers/Bundle/Application/ED39A55B-01EC-40D7-A11C-43BFDD6329C7/RNCoreMLApp.app/hazelnut.png';
+            RNFS.moveFile(imageUri, destPath)
+              .then(() => {
+                console.log('Image moved');
+              })
+              .catch(e => {
+                console.log(e);
+              });
+
             navigation.navigate('SelectedPicture', {
-              uri: imageUri,
+              uri: destPath,
             });
           }}>
           <Image source={{uri: imageUri}} style={styles.image} />

@@ -14,7 +14,8 @@ const windowHeight = Dimensions.get('window').height;
 
 const SelectedPicture = () => {
   const [ref, setRef] = React.useState<any>();
-  const [label, setLabel] = React.useState<any>();
+  const [label, setLabel] =
+    React.useState<[{confidence: number; identifier: string}]>();
   const [classification, setClassification] = React.useState(
     'Tap for classification',
   );
@@ -25,9 +26,11 @@ const SelectedPicture = () => {
   };
 
   const updateReact = (e: {
-    nativeEvent: {label: React.SetStateAction<string[]>};
+    label: React.SetStateAction<
+      [{confidence: number; identifier: string}] | undefined
+    >;
   }) => {
-    setLabel(e.label as [{confidence: string; identifier: string}]);
+    setLabel(e.label);
 
     console.log('label in JS', label);
   };
@@ -38,15 +41,16 @@ const SelectedPicture = () => {
 
   React.useEffect(() => {
     if (label !== undefined) {
-      let data = label[0];
+      const data = label.reduce((accum, curr) => {
+        return `${accum} ${curr.identifier.split(' ')[1]} ${
+          Math.round(100 * curr.confidence) / 100
+        }`;
+      }, '');
+      console.log(data);
 
-      setClassification(
-        `${data.identifier.split(' ').slice(1).join(' ')} ${
-          Math.round(100 * data.confidence) / 100
-        }`,
-      );
+      setClassification(data);
     }
-  }, [label]);
+  }, [label, setClassification]);
 
   if (routeParams.uri) {
     return (
@@ -83,30 +87,6 @@ const SelectedPicture = () => {
           </Box>
         </Box>
       </SafeAreaView>
-
-      /*
-      This is simply manual testing for CoreView module.
-      CaptureScreen and GalleryScreen, would be redirected here, to SelectedPicture,
-        with image label/confidence data passed as a param
-      */
-
-      // <SafeAreaView style={s.safeArea}>
-      //   <Box f={1}>
-      //     <TouchableOpacity
-      //       onPress={updateNative}
-      //       style={{
-      //         flex: 1,
-      //         backgroundColor: theme.color.blueLight,
-      //         opacity: 1,
-      //       }}>
-      //       <CoreView
-      //         // style={{flex: 1}}
-      //         onUpdate={updateReact}
-      //         ref={e => setRef(e)}
-      //       />
-      //     </TouchableOpacity>
-      //   </Box>
-      // </SafeAreaView>
     );
   }
 
