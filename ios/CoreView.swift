@@ -6,7 +6,6 @@ import Vision
 @available(iOS 11.0, *)
 class CoreView: UIView {
   @objc var label: NSArray = []
-  @objc var imageLocation: NSString!
   var toggle = true
 
   override init(frame: CGRect) {
@@ -21,40 +20,51 @@ class CoreView: UIView {
   //This will receive a value from React, then udpate data on Native
   @objc func update(value: NSString) {
     classifyImage(value as String)
-    label = [value]
-    print("label is \(label)")
-        
-    //Temporary solution for potential need to run extra sendUpdate() the first time
-    if toggle {
-      sendUpdate()
-      toggle = false
-    }
     
-    sendUpdate()
+//    print("label is \(label)")
+//
+    //Temporary solution for potential need to run extra sendUpdate() the first time
+    //Would be better to wait for a promise
+//    if toggle {
+//      sendUpdate()
+//      toggle = false
+//    }
+//
+//    sendUpdate()
   }
   
   @objc func sendUpdate() {
+    if toggle {
+      onUpdate!(["label": label])
+      toggle = false
+    }
+    
     if onUpdate != nil {
       onUpdate!(["label": label])
     }
   }
   
   
-  private lazy var classificationRequest: VNCoreMLRequest = {
+  @objc private lazy var classificationRequest: VNCoreMLRequest = {
     do {
       let model = try VNCoreMLModel(for: MobileNet().model)
 
       let request = VNCoreMLRequest(model: model) { request, _ in
           if let classifications =
             request.results as? [VNClassificationObservation] {
-          
-            print("Classification results: \(classifications)")
+            
+            let topClassifications = classifications.prefix(2).map {
+              ["confidence": $0.confidence as NSNumber, "identifier": $0.identifier as NSString]
+            }
 
-            self.label = classifications as NSArray
-          }
+            self.label = topClassifications as NSArray
+            self.sendUpdate()
+            print("label is \(self.label)")
+        }
       }
 
       request.imageCropAndScaleOption = .centerCrop
+
       return request
     } catch {
       fatalError("Failed to load Vision ML model: \(error)")

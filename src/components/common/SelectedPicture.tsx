@@ -23,7 +23,7 @@ const CoreView = requireNativeComponent('CoreView');
 
 const SelectedPicture = () => {
   const [ref, setRef] = React.useState<any>();
-  const [label, setLabel] = React.useState(['label data sample']);
+  const [label, setLabel] = React.useState();
 
   const navigation = useNavigation();
   const routeParams = (useRoute().params ?? {}) as {
@@ -33,7 +33,7 @@ const SelectedPicture = () => {
   const updateReact = (e: {
     nativeEvent: {label: React.SetStateAction<string[]>};
   }) => {
-    setLabel(e.nativeEvent.label);
+    setLabel(e.nativeEvent.label as {confidence: string; identifier: string});
 
     console.log('label in JS', label);
   };
