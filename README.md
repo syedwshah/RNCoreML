@@ -26,6 +26,5 @@ If you don't allow access, then you may have to change permissions from your pho
 
 ## Sample
 
-<img src='src/misc/food.jpeg' title='Modal' alt='Food' />
-
-<img src='src/misc/gallery.jpeg' title='GalleryScreen' alt='Gallery' />
+<img src='src/misc/food.jpeg' title='Modal' alt='Food' width="276" height="597.33" />
+<img src='src/misc/gallery.jpeg' title='GalleryScreen' alt='Gallery' width="276" height="597.33" />
