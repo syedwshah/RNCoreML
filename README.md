@@ -21,7 +21,11 @@ Open up RNCoreMLApp.xcworkspace and build the project.
 - Make sure you've selected your apple development team
 - Make sure the path of the app location, under **Signing & Capabilities**, is correct. You can do so by changing _Location_ of the project to a Relative Path
 
-When the app runs, you need to allow access to your camera (and network on the fully completed RNCoreML).
+When the app runs, you may need to allow access to your camera.
 If you don't allow access, then you may have to change permissions from your phone's settings. Otherwise you would need to delete the app on your phone, and rebuild the project.
 
-And that's pretty much it!
+## Sample
+
+<img src='src/misc/food.jpeg' title='Modal' alt='Food' />
+
+<img src='src/misc/gallery.jpeg' title='GalleryScreen' alt='Gallery' />

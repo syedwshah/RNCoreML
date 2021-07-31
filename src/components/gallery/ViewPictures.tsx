@@ -22,7 +22,6 @@ const ViewPictures = (pictures: {picture: EdgeNode[] | any}) => {
 
             try {
               await RNFS.copyAssetsFileIOS(imageUri, destPath, 0, 0);
-              console.log('destPath', destPath);
             } catch (error) {
               console.log(error);
             }

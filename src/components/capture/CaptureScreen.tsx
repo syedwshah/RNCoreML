@@ -59,7 +59,6 @@ const s = StyleSheet.create({
     flexDirection: 'column-reverse',
     alignItems: 'center',
   },
-  capture: {},
 });
 
 export default CaptureScreen;

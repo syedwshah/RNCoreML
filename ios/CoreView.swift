@@ -40,18 +40,18 @@ class CoreView: UIView {
             
             self.label = topClassifications as NSArray
             self.sendUpdate()
-            print("label is \(self.label)")
         }
       }
 
+      //Useful for Swift UI components:
       request.imageCropAndScaleOption = .centerCrop
-
       return request
     } catch {
       fatalError("Failed to load Vision ML model: \(error)")
     }
   }()
-
+  
+  //Send an image uri to be 
   @objc func classifyImage(_ image: String) {
     let uiImage = ConvertBase64StringToImage(imageBase64String: image)
 

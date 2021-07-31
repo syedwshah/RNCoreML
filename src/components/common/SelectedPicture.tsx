@@ -31,8 +31,6 @@ const SelectedPicture = () => {
     >;
   }) => {
     setLabel(e.label);
-
-    console.log('label in JS', label);
   };
 
   const updateNative = () => {
