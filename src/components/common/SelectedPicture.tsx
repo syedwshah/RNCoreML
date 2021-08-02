@@ -40,10 +40,8 @@ const SelectedPicture = () => {
   React.useEffect(() => {
     if (label !== undefined) {
       const data = label.reduce((accum, curr) => {
-        let identifier = curr.identifier.split(' ')[1];
-        if (identifier[identifier.length - 1] === ',') {
-          identifier = identifier.substring(0, identifier.length - 1);
-        }
+        let identifier = curr.identifier.split(',')[0];
+
         return `${accum} ${identifier} (${
           Math.round(100 * curr.confidence) / 100
         })`;
