@@ -28,5 +28,7 @@ If you don't allow access, then you may have to change permissions from your pho
 
 ## Sample
 
-<img src='src/misc/food.jpeg' title='Modal' alt='Food' width="276" height="597.33" />
+<img src='src/misc/rncoreml.gif' title='Gif' alt='gif' width="276" height="597.33" />
+<img src='src/misc/laptop.jpeg' title='Laptop' alt='CaptureScreen' width="276" height="597.33" />
 <img src='src/misc/gallery.jpeg' title='GalleryScreen' alt='Gallery' width="276" height="597.33" />
+<img src='src/misc/food.jpeg' title='Modal' alt='Food' width="276" height="597.33" />
