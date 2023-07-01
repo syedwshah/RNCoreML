@@ -1,5 +1,7 @@
 # RNCoreML
 
+Bridging of Apple COREML library to TypeScript for iOS (with sample project)
+
 Take a picture from your phone or select one from your gallery, then let the app classify it!
 
 To use all the features you will most likely need to run this on a physical device.
